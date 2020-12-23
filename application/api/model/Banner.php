@@ -3,22 +3,34 @@
 
 namespace app\api\model;
 
-
-use think\Exception;
 use think\Model;
 
 class Banner extends Model
 {
+    //隐藏字段
+    protected $hidden = ['delete_time', 'update_time'];
+
+    /**
+     * 关联banner_item表
+     * @return \think\model\relation\HasMany
+     */
+    public function items()
+    {
+        return $this->hasMany('BannerItem','banner_id','id');
+    }
+
+    /**
+     * 通过id获取banner详情
+     * @param $id
+     * @return array|bool|false|\PDOStatement|string|Model|null
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
     public static function getBannerByID($id)
     {
-        //TODO：根据Banner ID号 获取Banner信息
-//        try {
-//            1/0;
-//        }catch (Exception $e) {
-//            //TODO:可以记录日志
-//            throw $e;
-//        }
-        return null;
+        $banner = self::with(['items', 'items.img'])->find($id);
+        return $banner;
     }
 
 }
