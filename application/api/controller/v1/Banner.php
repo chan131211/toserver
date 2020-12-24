@@ -14,6 +14,7 @@ class Banner
 
     /**
      * 获取banner详情
+     * @url /banner/:id
      * @param $id banner id
      * @return array|bool|false|\PDOStatement|string|\think\Model
      * @throws BannerMissException

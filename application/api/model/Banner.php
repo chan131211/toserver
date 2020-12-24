@@ -3,9 +3,8 @@
 
 namespace app\api\model;
 
-use think\Model;
 
-class Banner extends Model
+class Banner extends BaseModel
 {
     //隐藏字段
     protected $hidden = ['delete_time', 'update_time'];
@@ -22,7 +21,7 @@ class Banner extends Model
     /**
      * 通过id获取banner详情
      * @param $id
-     * @return array|bool|false|\PDOStatement|string|Model|null
+     * @return array|bool|false|\PDOStatement|string|\think\Model|null
      * @throws \think\db\exception\DataNotFoundException
      * @throws \think\db\exception\ModelNotFoundException
      * @throws \think\exception\DbException

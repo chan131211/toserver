@@ -2,24 +2,20 @@
 
 namespace app\api\model;
 
-use think\Model;
 
-class Image extends Model
+class Image extends BaseModel
 {
     //隐藏字段
     protected $hidden = ['id', 'from', 'delete_time', 'update_time'];
 
     /**
-     * 自动获取图片的url并拼接url
+     * 自动获取处理完的url
      * @param $value
+     * @param $data
      * @return string
      */
-    public function getUrlAttr($value, $data)
+    protected function getUrlAttr($value, $data)
     {
-        if ($data['from'] == 1) {
-            return config('setting.img_prefix').$value;
-        }else {
-           return $value;
-        }
+        return $this->prefixImgUrl($value,$data);
     }
 }
